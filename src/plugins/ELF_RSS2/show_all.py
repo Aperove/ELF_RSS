@@ -36,11 +36,11 @@ async def handle_rss_show_all(event: Event, args: Message = CommandArg()) -> Non
     if group_id:
         rss_list = Rss.find_group(group=str(group_id))
         if not rss_list:
-            await RSS_SHOW_ALL.finish("❌ 当前群组没有任何订阅！")
+            await RSS_SHOW_ALL.finish("当前群组没有订阅")
     elif guild_channel_id:
         rss_list = Rss.find_guild_channel(guild_channel=guild_channel_id)
         if not rss_list:
-            await RSS_SHOW_ALL.finish("❌ 当前子频道没有任何订阅！")
+            await RSS_SHOW_ALL.finish("当前子频道没有订阅")
     else:
         rss_list = Rss.read_rss()
 
@@ -67,4 +67,4 @@ async def handle_rss_show_all(event: Event, args: Message = CommandArg()) -> Non
         msg_str = await handle_rss_list(result)
         await RSS_SHOW_ALL.finish(msg_str)
     else:
-        await RSS_SHOW_ALL.finish("❌ 当前没有任何订阅！")
+        await RSS_SHOW_ALL.finish("当前没有任何订阅")
